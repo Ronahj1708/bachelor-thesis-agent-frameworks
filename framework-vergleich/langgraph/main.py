@@ -32,11 +32,15 @@ def begruessung(state: ReiseState):
 def reiseplan(state: ReiseState):
     print("Ich erstelle jetzt deinen Reiseplan.")
 
-    state["reiseplan_text"] = (
-        f"Reise nach {state['reiseziel']} "
-        f"für {state['tage']} Tage "
-        f"mit einem Budget von {state['budget']} €."
+    prompt = (
+        f"Erstelle einen Reiseplan für {state['reiseziel']}. "
+        f"Die Reise dauert {state['tage']} Tage. "
+        f"Das Budget beträgt {state['budget']} Euro."
     )
+
+    response = llm.invoke(prompt)
+
+    state["reiseplan_text"] = response.content
 
     return state
 
