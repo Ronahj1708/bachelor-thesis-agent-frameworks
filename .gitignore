@@ -1,1 +1,6 @@
 ﻿Bachelorarbeit + Expose und Forschungsunterlagen/
+
+**/.env
+**/.venv/
+**/venv/
+**/__pycache__/
