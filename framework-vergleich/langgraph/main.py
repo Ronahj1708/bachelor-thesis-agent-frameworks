@@ -12,7 +12,6 @@ llm = ChatOpenAI(
     api_key=os.getenv("OPENAI_API_KEY")
 )
 
-
 class ReiseState(TypedDict):
     reiseziel: str
     tage: int
