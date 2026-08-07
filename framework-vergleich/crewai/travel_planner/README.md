@@ -1,20 +1,21 @@
-# travel_planner
+# Travel Planner
 
-A crewAI project using JSON-first configuration.
+Dieses Projekt wurde mit CrewAI erstellt und dient als MVP für den Vergleich verschiedener Agenten-Frameworks im Rahmen einer Bachelorarbeit.
 
-## Running
+## Ausführen
 
 ```bash
 crewai run
 ```
 
-## Project Structure
+## Projektstruktur
 
-- `agents/` - Agent definitions (JSONC)
-- `crew.jsonc` - Crew definition with tasks and configuration
-- `tools/` - Custom tools (Python)
-- `knowledge/` - Knowledge files for agents
+- `agents/` – Definition des Travel-Planner-Agenten
+- `crew.jsonc` – Konfiguration der Crew und der Aufgaben
+- `knowledge/` – Wissensdateien für den Agenten
+- `tools/` – Benutzerdefinierte Tools (optional)
+- `pyproject.toml` – Projekt- und Abhängigkeitsverwaltung
 
-> **Note:** `custom:<name>` tool references execute `tools/<name>.py` as local
-> Python code when the crew loads. Only run crew projects from sources you
-> trust.
+## Beschreibung
+
+Der Agent erstellt auf Basis von Reiseziel, Reisedauer, Budget und Interessen einen personalisierten Reiseplan.
