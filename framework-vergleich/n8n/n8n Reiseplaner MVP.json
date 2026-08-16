@@ -1,0 +1,148 @@
+{
+  "name": "n8n Reiseplaner MVP",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "fd4888d8-d47a-4ec7-b006-467472898791",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "17bc655c-54f6-48df-bde0-73d1fac3620a",
+              "name": "destination",
+              "value": "Rom",
+              "type": "string"
+            },
+            {
+              "id": "d5dfadfb-860d-45f0-8f8c-cac3c4f7a52e",
+              "name": "days",
+              "value": 3,
+              "type": "number"
+            },
+            {
+              "id": "130d5ae8-53fa-4307-8e95-66a6a0a31ae6",
+              "name": "budget",
+              "value": 600,
+              "type": "number"
+            },
+            {
+              "id": "162f27d2-4495-4bab-87d7-a211d0f0b15e",
+              "name": "interests",
+              "value": "Kultur, Sehenwürdigkeiten und italienschies Essen",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        160,
+        0
+      ],
+      "id": "4c017093-059d-4fc2-91f5-ce1a16fc15b6",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Erstelle einen personalisierten Reiseplan anhand der folgenden Angaben.Reiseziel: {{ $json.destination }}\nReisedauer: {{ $json.days }} Tage\nBudget: {{ $json.budget }} Euro\nInteressen: {{ $json.interests }}\n\nErstelle einen konkreten und strukturierten Reiseplan für jeden einzelnen Tag.\n\nBerücksichtige dabei das angegebene Budget und die genannten Interessen.\nNenne passende Aktivitäten und Sehenswürdigkeiten.\nAchte darauf, dass die Vorschläge realistisch zur Reisedauer und zum Budget passen.\n\nFrage keine weiteren Informationen ab.\nNutze ausschließlich die oben angegebenen Daten und erstelle direkt den vollständigen Reiseplan.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        336,
+        0
+      ],
+      "id": "c3b1679d-3f4b-4fbe-a85d-da0975d2d1e6",
+      "name": "AI Agent1",
+      "notes": "=Erstelle einen personalisierten Reiseplan.\n\nReiseziel: {{ $json.destination }}\nReisedauer: {{ $json.days }} Tage\nBudget: {{ $json.budget }} Euro\nInteressen: {{ $json.interests }}\n\nErstelle daraus einen strukturierten Reiseplan für jeden Tag."
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        336,
+        224
+      ],
+      "id": "c9d80bac-ce72-43b8-99ab-b4035781cdce",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "jmCmlBEtwcjtYUXy",
+          "name": "OpenAI account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "79dd0c1a-220b-4c9b-af45-f3a711d5cb84",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fcf3fed23136674e3bdc40ffbd5fe3149b9cf427862a69f9ec4137a5db1ec7e5"
+  },
+  "nodeGroups": [],
+  "id": "BWdcJg3l0xBK3a2v",
+  "tags": []
+}
