@@ -69,12 +69,14 @@
       "name": "AI Agent1",
       "notes": "=Erstelle einen personalisierten Reiseplan.\n\nReiseziel: {{ $json.destination }}\nReisedauer: {{ $json.days }} Tage\nBudget: {{ $json.budget }} Euro\nInteressen: {{ $json.interests }}\n\nErstelle daraus einen strukturierten Reiseplan für jeden Tag."
     },
+    },
     {
       "parameters": {
         "model": {
           "__rl": true,
+          "value": "gpt-4.1-mini",
           "mode": "list",
-          "value": "gpt-5-mini"
+          "cachedResultName": "gpt-4.1-mini"
         },
         "builtInTools": {},
         "options": {}
@@ -137,7 +139,7 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "79dd0c1a-220b-4c9b-af45-f3a711d5cb84",
+  "versionId": "0a390869-147e-4967-8e0f-313f099878e6",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fcf3fed23136674e3bdc40ffbd5fe3149b9cf427862a69f9ec4137a5db1ec7e5"
