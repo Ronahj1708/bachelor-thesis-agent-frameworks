@@ -17,6 +17,7 @@ class ReiseState(TypedDict):
     reiseziel: str
     tage: int
     budget: int
+    interessen: str
     reiseplan_text: str
     versuche: int
     freigegeben: bool
@@ -27,6 +28,7 @@ def begruessung(state: ReiseState):
     print(f"Reiseziel: {state['reiseziel']}")
     print(f"Tage: {state['tage']}")
     print(f"Budget: {state['budget']} €")
+    print(f"Interessen: {state['interessen']}")
 
     return state
 
@@ -35,9 +37,12 @@ def reiseplan(state: ReiseState):
     print("Ich erstelle jetzt deinen Reiseplan.")
 
     prompt = (
-        f"Erstelle einen Reiseplan für {state['reiseziel']}. "
-        f"Die Reise dauert {state['tage']} Tage. "
-        f"Das Budget beträgt {state['budget']} Euro."
+        "Erstelle einen personalisierten Reiseplan.\n\n"
+        f"Reiseziel: {state['reiseziel']}\n"
+        f"Reisedauer: {state['tage']} Tage\n"
+        f"Budget: {state['budget']} Euro\n"
+        f"Interessen: {state['interessen']}\n\n"
+        "Erstelle daraus einen strukturierten Reiseplan für jeden Tag."
     )
 
     response = llm.invoke(prompt)
@@ -118,9 +123,11 @@ graph_builder.set_finish_point("ausgabe")
 
 graph = graph_builder.compile()
 
+
 graph.invoke({
     "reiseziel": "Rom",
     "tage": 3,
     "budget": 600,
+    "interessen": "Kultur, Sehenswürdigkeiten und italienisches Essen",
     "versuche": 0
 })
